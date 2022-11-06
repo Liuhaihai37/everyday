@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+                            // <!-- Promise是什么 -->
+    //1.认识Promise
+    //Promise是异步操作的一种解决方法
+    //回调函数
+    // document.addEventListener('click',()=>{
+    //     console.log('这里是异步的');
+    // },false);
+    // console.log('这里是同步的');
+    //2.什么时候使用Promise
+    ///Promise一般用来解决‘层层嵌套的’回调函数（回调地狱）的问题
+    //运动
+                        //Promise的基本用法
+    //1.实例化构造函数
+    //console.log(Promise);
+    //Promise解决的不是回调函数，而是回调地狱
+    // const p=new Promise(()=>{});
+    //2.Promise的状态
+    // const p=new Promise((resolve,reject)=>{
+    // //Promise有三种状态，一开始是pending（未完成），执行resolve,变成rejected,已失败
+    // //Promise的状态一旦变化，就不会再发生改变了
+    // //pending->fulfilled
+    // // resolve();
+
+    // //pending->rejected   //已失败
+    // // reject();
+    // });
+    //3.then方法
+    // p.then(()=>{
+    //     //成功的时候
+    //     console.log('success');
+    // },()=>{
+    //     //失败的时候
+    //     console.log('error');
+    // });
+    //4.resolve和reject函数的参数
+    // const p=new Promise((resolve,reject)=> {
+    //  //Promise有三种状态，一开始是pending（未完成），执行resolve,变成rejected,已失败
+    //  //Promise的状态一旦变化，就不会再发生改变了
+    //  //pending->fulfilled
+    //    resolve();
+
+    //  //pending->rejected   //已失败
+    //  // reject();
+    // });     //状态不是成功就是失败                       
+    // p.then(data=>{
+    // //     //成功的时候
+    //     console.log('success',data);                        //与上面进行联动，resolve的参数传到data
+    //  },err=>{
+    //      //失败的时候
+    //      console.log('error',err);                              //与上面进行联动，error的参数传到err
+    //  });
+                            //then()
+    //1.什么时候执行
+    //pending->fulfilling时，执行then的第一个回调函数
+    //pending->rejected时，执行then的第二个回调函数
+    //2.执行后的返回值
+    //then方法执行后返回一个新的Promise对象
+    //总结来说就是用then方法后也能再次调用then方法
+    // const p=new Promise((resolve,reject)=>{
+    //     resolve();
+    // });
+    // const p2=p.then(()=>{},()=>{}).then().then();
+    //3.then方法返回的Promise对象的状态变化
+    // //对于p的Promise方法先省略
+    // const p2=p.then(()=>{
+    //     //console.log('success');
+    // },()=>{
+    //     console.log('err');
+    //     //在then的回调函数中，return的后面的东西，会用Promise包装一下
+    //     //return undifined;    //默认
+    //     //等价于
+    //     //return new Promise(resolve=>{
+    //         // resolve(undifined);    
+    //     // });           //默认都是成功的，要改变的话改变return的内容
+    // }).then(
+    //    data=>{         //通过上面的return的值来改变data的值
+    //     console.log('success2',data);
+    //    },()=>{}
+    // );   //后面还能再加then
+                            //then()-2
+    // //回调地狱的解决方案    好难
+    // const boxEI=document.getElementById('box');
+    // const movePromise=(el,piont)=>{
+    //     return new Promise(resolve=>{
+    //         move(el,piont,()=>{
+    //             resolve();
+    //         });
+    //     });
+    // };
+    // document.addEventListener('click',
+    // ()=>{
+    //     move.Promise(boxEI,{x:50}).then(()=>{
+    //         return movePromise(boxEI,{x:150,y:150});
+    //     }).then(()=>{
+    //         return movePromise(boxEI,{y:150});
+    //     }).then(()=>{
+    //         return movePromise(boxEI,{x:0,y:0});
+    // },
+    // false               //横向发展，不是嵌套的
+    // );
+    </script>
+</body>
+</html>
