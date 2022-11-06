@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <input type="text" id="username">
+    <input type="submit" value="提交" id="btn"> -->
+    <script>
+            //剩余参数
+    //1.认识剩余参数
+    // const add=(x,y,...args) =>{
+    //     console.log(x,y,args);
+    // }
+    // add(1)  //1
+    // add(1,2)  // 1,2
+    // add(1,2,3)  // 1,2,3
+    // add(1,2,3,4)  //1,2,[3,4]
+    //剩余参数永远是数组，即使没有值，也是空数组
+           //剩余参数的注意事项
+    //1.箭头函数的剩余参数
+    //箭头函数的参数部分即使有一个剩余参数，也不能省略圆括号
+    //2.使用剩余参数替代arguments获取时间参数
+    //const add=function(){
+    //   console.log(arguments);            //argumnets获得的是一个类数组
+    //}
+    //3.剩余参数的位置
+    //剩余参数只能最后一个参数，之后不能再有其他的参数，否则会报错
+                //剩余参数的应用
+    //1.完成add函数
+    // const add=(...args) =>{
+    //     let sum=0;
+    //     for(let i=0;i<args.length;i++){
+    //         sum+=args[i];
+    //     }                                           //对数组args求和
+    //     return sum;
+    // }
+    //2.与结构赋值结合使用
+    //剩余参数不一定非要作为函数参数使用
+    //const[num,...args]=[1,2,3,4]   //其中num与args不能换位置
+    // const func=([num,...args]) =>{
+    // }
+    // func([1,2,3]);
+    // const func=(...args) =>{}   //即使没有输入也是个空数组
+    // const {x,y,...z}={a:3,x:1,y:2,b:4};     //z必须是最后一个否则会报错
+    // console.log(x,y,z);          //此时的z为对象
+                            //数组展开运算符的基本用法
+    //1认识展开运算符
+    //[3,1,2]
+    //Math.min    //自带函数 后面加的是展开式
+    //console.log(Math.min(3,2,1))
+    //[3,2,1] -> 3,2,1
+    //2.数组展开运算符的基本用法
+    //console.log(Math.min(...[1,2,3])
+    //相当于
+    //console.log(Math.min(1,2,3)
+                            //区分剩余参数和展开运算符
+    //1.根本区别
+    //展开运算符
+    //[1,2,3] -> 3,2,1
+
+    //自我感觉...后边加参数的话为剩余参数的应用
+    //而...后加数组的话为展开运算符的应用
+                        //数组的展开运算符的应用
+    //1.复制数组
+    //const a=[1,2];
+    //const b=[...a];
+    //2.合并数组
+    //const a=[1,2,3];
+    //const b=[1,3];
+    //const c=[2,3];
+    //const d=[...a,...b,...c]
+    //3.字符串转为数组
+    //console.log("alex");
+    //console.log(..."alex");     //a l e x
+    //console.log("alex".split(""));      //["a","l","e","x"]
+    //常见的类数组转化为数组
+    //arguments
+    // function func(){
+    //     console,console.log((arguments));
+    //     console,console.log(([...arguments]));
+    // }
+    //NodeList
+    //console.log(document.querySelectorAll('p'));           //p标签
+    //console.log([...document.querySelectorAll('p')]);
+                        //对象展开运算符的基本用法
+    //1.展开对象
+    // const app={
+    //     color:red;
+    //     shape:qiuxing;
+    // }
+    // console.log(...apple);
+    // console.log([...apple]);  //这两个会报错
+    //console.log({...apple})   //必须要用大括号 而且会产生新的对象
+    //对象的展开，把属性罗列出来，用逗号分隔，放到一个{}中，构成新的对象
+    //新对象拥有全部属性，相同属性，后者会覆盖前者
+    //2.合并对象
+    //它的操作和数组的操作基本一样
+
+                                
+    //1.什么是Set
+    //集合
+    //数组是一系列有序数据的集合
+    //set是一系列无序，没有重复值的数据集合
+    //2.理解set
+    //const s=New Set();
+    //s.add(1);
+    //s.add(2);           //给set一个添加值
+
+                        //set的实例和属性
+    //1.方法
+    // const s=new Set();
+    // s.add(1).add(2);
+    // console.log(s);
+    //has
+    //console.log(s.has(1));      //true
+    //delete
+    //s.delete(1);
+    //用delete删除不存在的成员，不会发生什么，也不会报错
+    //clear
+    // s.clear    /全删
+    //forEach
+    // s.forEach(function(value,key,set){
+    //     //Set中的value = key
+    //     console.log(value,key,set);
+    //     console.log(this);     //一开始指向的是windows,加入document后会指向documnet
+    // },document);
+    //会按照成员加入的顺序遍历
+    //2.属性
+    //size  获得成员个数
+    //console.log(s.size)
+                    //set构造函数的参数
+    //1.数组
+    // const s=new Set([1,2,1])         输出的结果为{1，2}
+    //2.字符串,arguments,NodeList(结点),Set等
+    //字符串输入后会拆开
+    // function func(){
+    //     console.log(new Set(arguments))
+    // }
+    // func(1,2,1);     //结果为{1,2}
+    // console.log(new Set(document.querySelectorAll("q")))  //q为标签
+    // const s=new Set(1,2,3)  与   const s1=new Set(s)   他俩输出结果是一样的，但是判断全等为flase
+                            // Set的注意事项
+    //1.判断重复方式1.
+    //set 对重复值的判断基本遵守严格相等（===）
+    //但对于NaN的判断与===不同，set与NaN等于NaN    这一点要注意
+    //两个空对象也是不相等的
+    //2.什么时候使用set
+    //数组或字符串去重的时候
+    //不需要通过下标访问的时候，只要遍历时
+    //为了使用set的方法和属性的时候
+                        //set的应用
+    //1.数组去重
+    //console.log([...new Set([1,2,1])]);
+    //2.字符串去重
+    // console.log([...new Set([1,2,1]].join(''));
+    //3.存放dom元素
+    // const s=new Set(document.querySelectorAll("q"));
+    // s.forEach(function(elem){
+    //     elem.style.backgroundColor="yellow";    //改变P标签的背景颜色
+    // })
+                    // Map是什么
+    // 1.认识对象
+    //映射
+    //map和对象都是键值对的集合
+    //健->值 key->value
+    // const person={
+    //     name:'alex';
+    //     age:18;
+    // }
+    // const s=new Map();               //建立一个map
+    // s.set("key","value");           Map的添加方法用set
+    //2.Map和对象的区别
+    //对象一般用字符串当作键            非字符串的话会转换为字符串加引号 例如{}做间的时候表示为“[object object]”
+
+    //基本数据类型：数字 字符串 布尔值 undefined null;
+    //引用数据类型：对象 {[] {} 函数 Set Map等}
+    //上面两条都可以作为Map的健
+    // const m=new Map();
+    // m.set({},'object');
+    // m.set(new Set([1,2]),'object');
+    // m.set(undefined,'undefined');
+    // console.log(m);
+                       // Map实例的方法和属性
+    //1.方法
+    //set
+    //使用set添加新成员的时候，键如果已经存在，后添加的键值对覆盖已有的
+    //get
+    ///例如 m.get(key);    返回键对应的值如果键不存在false
+    //has
+    //m.has(key);    //判断有没有键
+    //delete
+    //m.delete(key);   //删除  删除不存在的键不会有反应
+    //clear
+    //m.clear();    全部清空
+    //foreach
+    // m.forEach(function(value,key,Map){
+    //     console(value,key,m===Map);
+    // });                             同样也可以添加document改变this指向
+    //2.属性w
+    //size
+    //对象里面没有这样的属性
+    //m.size   获取Map里面有几个键值对
+                                //Map构造函数的参数
+    //1.数组
+    //只能传二维数组，而且必须体现出键和值
+    //例如  console.log(
+        // mew Map([
+    //     [key,name],
+    //     [value,xioaming]
+    // ])
+    // );
+    // 2.Set Map等
+    //Set也必须体现键和值
+    //const s=new set([
+    //     [name,key],
+    //     [xiaoming,value]             键和值反了
+    // ]);
+    //Map
+    //复制一个新的map
+    //const m2=new Map(m1);   他俩结果相同但是不全等
+                    //map的注意事项
+    //1.判断键名是否相等
+    //基本遵守严格相等(===)
+    //例外就是NaN,Map中NaN中也是等于NaN的；
+    //2.什么时候使用map
+    //如果只需要key->value的结构的结构，或者需要字符串以外的值做键的时候，使用map更合适
+    //应为有许多方法可以使用
+    //只有模拟现实世界的实体的时候，才使用对象
+    //（这都是建议）
+                    //map的应用
+    // const [p1,p2,p3]=document.querySelectorAll("q");
+    // const a=new Map([
+    //     [p1,"red"],
+    //     [p2,"rd"],
+    //     [p3,"ed"],
+    // ]);
+    // m.foreach((color,elem)=>{
+    //     elem.style.color=color;
+    // });
+    // m.foreach((propObj,elem)=>{
+    //     for(const p in propObj){                      对于p后面为集合时
+    //         elem.style[p]=propOnj[p];
+    //     }
+    // });
+
+
+                                                //Iterator是什么
+    //1.Iterator的作用
+    //Iterator:遍历器
+    //[1,2].forEach
+    //mew.set().forEash
+    //Iterator也是用来遍历的
+    // 2.寻找Iterator
+    //const it=[1,2][Symbol.iterator]();
+    // console.log(it);
+    //3.如何使用Iterator
+    // const it=[1,2][Symbol.iterator]();              //通过it输出
+    // console.log(it.next());    //value: 1, done: false
+    // console.log(it.next());    //value: 2, done: false
+    // console.log(it.next());   //value: undefined, done: true
+    // console.log(it.next());   //value: undefined, done: true
+    //it: 可遍历对象
+    //Symbol.iterator:可遍历对象的生成方法
+    //4.什么是Iterator
+    ////一个过程
+    //Symbol.iterator(可遍历对象的生成方式)->it(可遍历对象)->it.next()->it.next()->...(直到done为true)
+                                    //Iterator解惑
+    //1.为什么需要Iterator遍历器
+    //遍历数组：for循环和forEach方法
+    //遍历对象：for in循环
+    //Iterator遍历器是一个统一的遍历方法
+    //console.log([][Symbol.iterator]())    //[]本来就有的性质
+    //2.如何更方便的使用Iteraor
+    //Symbol.iterator->it->next()
+    //我们一般不会直接使用Iterator去遍历
+    //for ...of
+                        //for...of的用法
+    //1.认识for...of
+    // const arr=[1,2,3];
+    // const it=arr[Symbol.iterator]();
+    // console.log(it.next());    //value: 1, done: false
+    // .
+    // .
+    // let next=it.next();
+    // while(!next.done){
+    //     console.log(next.value);
+    //     next=it.next();
+    // }                            
+    // for(const item of arr){
+    //     console.log(item);         //打印的是done为false 的value的值
+    // }
+    //2.与break,continue一起使用
+    // const arr=[1,2,3];
+    // for(const item of arr){
+    //     if(item ===2){
+    //         //break      //到二的时候停止索引
+    //         continue;       //跳过二
+    //     }
+    //     console.log(item);
+    // }
+    //引出为什么没有索引
+    // //3.在for...of中获取数组的索引
+    // const arr=[1,2,3];
+    // //keys()得到的是索引的可遍历对象,可以遍历出索引值
+    // for(const key of arr.keys()){
+    //     console.log(key);     //0 1 2
+    // }
+    // //values()得到的是值的可遍历对象,可以遍历出值
+    // for(const values of arr.values()){
+    //     console.log(value);     //1 2 3
+    // }
+    // //和上面for..of的遍历差不多
+    // //entries()得到的[索引+值]组成的可遍历对象
+    // for(const entries of arr.entries()){
+    //     console.log(entries);     //[0,1]  [1,2]   [2,3]
+    // }
+    // for(const [index,value] of arr.entries()){
+    //     console.log(index,value);     //0 1 2
+    // }
+                    //原生可遍历和非原生可遍历
+    //1.什么是可遍历
+    //只要有Symbol.iterator方法,并且这个方法可以生成可遍历对象就是可遍历的,也叫原生可遍历
+    //只要可遍历,就可以使用for...of循环来统一遍历
+    //2.原生可遍历有哪些
+    //数组
+    //字符
+    //Set
+    //Map
+    //arguments
+    //Nodelist
+    // for(const elem of document.querySelectorAll("q")){
+    //     console.log(elem);
+    //     elem.style.color="red";
+    // }
+    //3.非原生可遍历有哪些
+    //一般的对象
+    // const person={sex:"male",age:18}
+    // person[Symbol.iterator]()=()=>{
+    //     //我认为是构造了一个return函数,输出value的值和done,还挺麻烦的
+    // }
+    //有length和索引属性的对象
+    // const obj={
+    //     0:"alex",
+    //     1:"male",
+    //     length:2
+    // };
+    // obj[Symbol.iterator] =Array.prototype[Symbol.iterator];
+    // //另一个也挺复杂的
+    // for(const item of obj){
+    //     console.log(item);
+    // }
+                            //使用了iterator的场合
+    //1.数组的展开运算符
+    //只要可遍历的就能展开
+    // console.log(...[1,2,3]);
+    //2.数组的解构赋值
+    //可遍历就能解构赋值
+    // const [m.n]=new Set([3,4]);
+    // const [a,b]="ab";
+    //3.Set和Map的构造函数
+    //可以放在set()和map()中   但是map需要用二维数组还体现键和值
+                        //字符串的新增方法
+                        //includes()
+    //判断字符串中是否含有某些字符
+    //1.基本用法
+    // console.log("abc".includes("a"));               //true                    
+    // console.log("abc".includes("ab"));               //true                    
+    // console.log("abc".includes("bc"));               //true                    
+    // console.log("abc".includes("ac"));               //false  
+    // 2.基本用法
+    // //表示开始搜索的位置,默认是0                 
+    // console.log("abc".includes("a",1));               //false                    
+    // 3.应用
+    // let url='https://www.imooc.com/course/list';
+    // const addurlparam=(url,name,value) =>{
+    //     url+=url.includes('?')?'&':'?';
+    //     url+=`$(name)=$(value)`;
+    //     return url;
+    // };
+    // url=addurlparam(url,'c','fe');
+    // console.log(url);
+    // url=addurlparam(url,'sort','pop');
+    // console.log(url);
+                            //padStart()和padEnd()
+    //补全字符串长度
+    //1.基本方法
+    // console.log('x'.padStart(5,'ab'));    //ababx
+    // console.log('x'.padEnd(5,'ab'));    //xabab
+    // console.log('x'.padEnd(4,'ab'));    //xaba
+    //2.注意事项
+    //原字符串的长度,等于或大于最大长度,不会消减原字符串,字符串补全不会生效,返回原字符串
+    // console.log('abc'.padStart(2,'012'));  //abc
+    //用来补全的字符串与原字符串长度之间和超过了最大长度,截去超出位数的补全字符串,原字符串不动
+    // console.log('abc'.padStart(10,'0123456789'));  //0123456abc
+    //如果省略第二位参数会用空格补全长度
+    // console.log('x'.padStart(4));    //    x;
+    //3.应用
+    //显示日期格式 
+    // console.log("10".padStart(2,0));    //10
+    // console.log("1".padStart(2,0));     //01
+                                    // trimStart()和trimEnd()
+    //清除字符串的首或尾空格,中间的空格不会清除
+    //1.基本用法
+    // const s=' a b c ';
+    // console.log(s.trimStart());   //'a b c '
+    // console.log(s.trimLeft());   //'a b c '
+    // console.log(s.trimEnd());   //' a b c'
+    // console.log(s.trimRight());   //' a b c'
+    // console.log(s.trim());   //'a b c'
+    //2.应用
+    // const usernameinput=documnet.getElementById("username");
+    // const btn=documnet.getElementById("btn");
+    // btn.addEventListener('click',()=>{
+    //     //验证
+    //     if(usernameinput.value.trim()!=1){
+    //         //可以提交
+    //         console.log("可以提交");
+    //     }else{
+    //         //不能提交
+    //         console.log("不能提交")
+    //     }
+    //     //手动提交
+    // },false);
+
+
+                            //数组的方法
+                            //includes()但是是数组的不是字符串
+    //1.基本用法
+    //判断数组中是否含有某个成员
+    // console.log([1,2,3].includes('2'))    //false
+    // console.log([1,2,3].includes(2))    //true
+    //第二个参数表示搜索的起始位置,默认值是0;
+    // console.log([1,2,3].includes(2,2))    //false
+    //基本遵守严格相等(===),但是对于NaN的判断与===不同 includes认为NaN与NaN相等
+    //2.应用
+    //去重
+    //[1,2,1];
+    // const arr=[];
+    // for(const item of [1,2,1]){
+    //     if(!arr.includes(item)){
+    //         arr.push(item);
+    //     }
+    // }
+    // console.log(item);
+                            //Array.from()
+    //将其他数据类型转化为数组
+    //1.基本用法
+    // console.log(Array.from('str'))   //['s','t','r']
+    //2.那些可以通过Array.from()转换成数组
+    //2.1所有可遍历的
+    //数组 字符串 set map nodelist arguments
+    //console.log(Array.from(new Set([1,2,3])));
+    //console.log([...new Set([1,2,3])]);   //这样子更好\
+    //2.2拥有length属性的任意对象
+    // const obj={
+    //     '0':'a',
+    //     '1':'b',
+    //     length:2
+    // };
+    // console.log(Array.from(obj));      ['a','b']
+    //3.第二个参数
+    //作用类似于数组的map方法,用来对每个元素进行处理,将处理后的值放入返回的数组
+    // console.log(
+    //     [1,2].map(value=>{
+    //         return value*2
+    //     })
+    // );
+    // console.log(Array.from('12',value));
+    // console.log(Array.from('12').map(value=>value*2));
+    // 4.第三个参数
+    // 修改this指向
+    // Array.from('12',
+    // function fun(){
+    //     console.log(this)        //指向document
+    // },
+    // document
+    // );
+                                    // find()和findIndex()
+    //find():找到满足条件的一个立即返回    值
+    //findIndex():找到满足条件的一个,立即返回其索引
+    //1.基本用法
+    // console.log(
+    //     [1,5,10,15].find((value,index,arr)=>{
+    //         return value >9;      //10
+    //     })
+    // );
+    // console.log(
+    //     [1,5,10,15].findIndex((value,index,arr)=>{
+    //         return value >9;      //2
+    //     })
+    // );
+    //改成一般函数也能添加document改变this指向
+    //2.应用
+    // const students=[
+    //     {name:'张三',sex:"男"},
+    //     {name:'李四',sex:"女"}
+    // ];
+    // console.log(students.find(value=>value.sex==='女'));
+                                    //Object.assign()
+    //1.基本用法
+    //用来合并对象的
+    //Object.assign(目标对象，源对象1，源对象2，...)；  //返回目标对象
+    // Object.assign直接合并到第一个参数,返回的就是合并的对象
+    // const apple={...};
+    // const pen={...};
+    // console.log(Object.assign(apple,pen));
+    // console.log(Object.assign({},apple,pen));    //这个时候就会返回一个新对象
+    // console.log({...apple,...pen});   
+    //2.注意事项
+    //2.1基本数据类型作为源对象   就是作为二三个对象
+    //与对象的展开类似，先转换成对象，再合并
+    //console.log(Object.assign({},undefinde));      //{}
+    //console.log(Object.assign({},null));      //{}
+    //console.log(Object.assign({},true));      //{}
+    //console.log(Object.assign({},1));      //{}
+    //console.log(Object.assign({},'str'));      //   {0:'s',1:"t",2:'r'}
+    // 2.2同名属性的替换
+    //后面的直接覆盖前面的   //注意是直接覆盖
+    //3.应用
+    //合并默认参数和用户参数
+    //同理也是后面的覆盖前面的
+                        //Object.keys()和Object.values()和Object.entries()
+    //1.基本用法
+    // const person={
+    //     name:'alex',
+    //     age:118
+    // };
+    // console.log(Object.keys());     //['alex',118]
+    // console.log(Object.values());   //[name,age]
+    // console.log(Object.entries());  //[[name,'alex'],[age,118]]
+    //2.与数组类似的方法的区别
+    //调用方式不同
+    //数组的keys(),value(),entries()等方法都是实例方法，返回的都是iterator   //类似数组
+    //对象的Object.keys()和Object.values()和Object.entries()等方法是构造函数的方法，返回的是数组
+    //3.使用for..of循环遍历对象
+    // const person={
+    //     name:'alex',
+    //     age:118 
+    //  };
+    //  for(const key of Object.keys(person)){
+    //     console.log(key);
+    //  }
+    //  for(const value of Object.values(person)){
+    //     console.log(value);
+    //  }
+    //  for(const [key,value] of Object.entries(person)){
+    //     console.log(key,value);
+    //  }
+    //  for(const entries of Object.entries(person)){
+    //     console.log(entries);
+    //  }
+    ////Object.keys()和Object.values()和Object.entries()并不能保证顺序一定是你看到的样子，这一点和for...in是一样的
+    //如果要有遍历顺序的话要自己规定遍历顺序  //有一点麻烦
+    </script>
+</body>
+</html>
