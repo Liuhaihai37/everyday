@@ -200,6 +200,122 @@
     //3.Promise.all/race/allSettled的错误处理
     //错误既可以单独处理，也可以统一处理
     //一旦被处理，就不会在其他地方再处理一遍
+                                    //Promise的应用
+    //异步加载图片
+    // const loadimgAsync=url=>{
+    //     return new Promise(resolve,reject)=>{
+    //         const img=new image();
+    //         img.onload=()=>{
+    //             resolve(img);
+    //         };
+    //         img.onerror=()={
+    //             reject(new Error(''));
+    //         };
+    //         img.scr=url;
+    //     };
+    // };
+    // const imgdom=document.getElementById('img');
+    // loadimgAsync('https://....')
+    // .then(img=>{
+    //     console.log(img.src);
+    //     setTimeout(()=>{
+    //         imgdom.src=img.src;
+    //     },1000);
+    // })
+    // .catch(err=>{
+    //     console.log(err);
+    // });
+
+
+
+
+
+
+
+                                    // Class类
+                                    //（像构造函数）
+                                    //Class是什么
+    //1.认识Class
+    //人类：类
+    //具体的人：实例，对象；
+    //类可以看作是对象的模板，用一个类可以创建出许多不同的对象
+    //2.Class基本用法
+    //类名一般是大写
+    //class Person{}  √
+    //class Person(){}  ×
+    //class Person{};  ×
+    //function func(){} √
+    // class Person{
+    //     //实例化时执行构造方法，所以必须有构造方法，但可以不写出来
+    //     constructor(name,age){
+    //         //console();
+    //         this.name=name;
+    //         this.age=age;     //这时的this指向下面zs
+    //         //一般在构造方法中定义属性，方法不在构造方法中定义，因为不同的调用会造成不同的保存
+    //     }  //方法与方法之间不像对象那个，是没有逗号的；
+
+    //     speak(){}  //各实例共享的方法
+    //  }
+    //Person
+    // const zs=new Person('zs',18);
+    // console.log(zs.name);
+    // console.log(zs.age);
+    // typeof.zs //是函数
+    //下面是构造函数，做一下对比
+    // 类名没有改
+    // function Person(name,age){
+    //         this.name=name;
+    //         this.age=age;    
+    //     }
+    // Person.prototype.speak=function(){};   //只能在外面加方法
+                            //class的两种定义形式
+    //1.声明形式
+    //class Person{
+    //     construcor(){
+    //     }
+    //     speak(){}
+    // }
+    //2.表达式形式
+    // const Person=class{
+    //     constructor(){}
+    // }
+    //立即执行的函数
+    //(function(){})();
+    //立即执行的类
+    // new (class{constructor(){}})();
+    // new Person
+                        //实例属性，静态方法和静态属性
+    //1.实例属性
+    //方法就是值为函数的特殊属性
+    //2.静态方法
+    //类的方法
+    // class Person{
+    //      constructor(){
+    //      }
+    //      speak(){}          
+    //      static speak(){
+    //         //this指向类
+    //         console.log(this);
+    //      }
+    // }
+    // const p=new Person();  //调用实例
+    // Person.speak();   //调用类
+    // Person.speak=function(){};//也是可以的
+    //3.静态属性
+    //类的属性
+    class Person{
+         constructor(){
+         }
+         speak(){}
+         
+         //不要这么写，目前只是提案，有兼容性问题
+         //static.version='1.0';
+
+         static speak(){
+            //this指向类
+            console.log(this);
+         }
+    }
     </script>
 </body>
 </html>
