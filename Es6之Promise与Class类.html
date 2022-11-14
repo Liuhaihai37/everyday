@@ -316,6 +316,148 @@
             console.log(this);
          }
     }
+                                    //私有属性和方法
+    //1.我为什么需要私有属性和方法
+    //一般情况下类的属性和烦方法都是公开的
+    //公有的属性和方法可以被外界修改，造成意想不到的错误
+    //现在的语法还没有
+    //2.模拟私有属性和方法
+    //2.1 _开头表示私有
+    // class Person{
+    //     constructor(name){
+    //         this._name=name;
+    //     }
+    //     getname(){
+    //         return this._name;
+    //     }
+    // }
+    // const p=new Person('alex');
+    // //console.log(p.name);    //得不到了
+    // console.log(p.getname());  //这样得到
+    //2.2将私有属性和方法移除类
+    // (function(){
+    //     let name='';
+    //         class Person{
+    //     constructor(username){
+    //         // this.name=name;      //把name化作可以全局调用
+    //         name=username;
+    //     }
+    //     getname(){
+    //         return this.name;
+    //     }
+    // }
+    // window.Person=Person;
+    // })();
+    // (function(){
+    //     const p= new Person('alex');
+    //     console.log(p.name);   //这样也不能调用
+    //     console.log(p.getname());   //这样能调用到了
+    // })();
+                            //extends
+    // //1.子类继承父类
+    // class Person{
+    //     constructor(name,sex){
+    //         this.name=name;
+    //         this.sex=sex;
+
+    //         this.say=function(){};      //虽然不合法但也能用但是最好不用
+    //     }
+    //     speak(){}
+    //     static speak(){}
+    // }
+    // Person.version='1.0';
+    // //上面是子类
+    // class Programmer extends Person{
+    //     constructor(){
+    //         super(name,sex);      //super指的是person
+    //     }
+    // }
+    // new zs=new Programmer('zs','男'); 
+    // //所有都继承了，下面就不调用看看了
+    //2.改写继承的属性或方法
+    // class Person{
+    //     constructor(name,sex){
+    //         this.name=name;
+    //         this.sex=sex;
+
+    //         this.say=function(){};      //虽然不合法但也能用但是最好不用
+    //     }
+    //     speak(){}
+    //     static speak(){}
+    // }
+    // Person.version='1.0';
+    // //上面是子类
+    // class Programmer extends Person{
+    //     constructor(){
+    //         super(name,sex);      //super指的是person   //注意他的前面不能有this操作
+    //         //this操作不能放在super前面
+    //     }
+    //     //同名覆盖
+    //     speak(){};
+
+    //     //不同名的话就是自己的了
+    // }
+    // new zs=new Programmer('zs','男'); 
+                            //super
+    //1.作为函数调用
+    //代表父亲的构造函数，只能用在子类的构造函数方法中，用在其他地方就会报错
+    // class Person{
+    //     constructor(name){
+    //         this.name=name;
+    //     }
+    // }
+    // class Programmer extends Person{
+    //     constructor(name,sex){
+    //         super(name,name);    //此时的person指向的是programmer实例化对象
+    //     }
+    // }
+    //2.作为对象使用
+    //2.1在构造方法中使用
+    //super代表父类的原型对象Person.prototype
+    //所以定义在父类实例上的方法或属性，是无法通过super调用的
+    //通过super调用父类的方法时，方法内部的this指向当前的子类实例
+    // class Person{
+    //     constructor(name){
+    //         this.name=name;
+    //     }
+    //     speak(){}
+    // }
+    // class Programmer extends Person{
+    //     constructor(name,sex){
+    //         super(name,name);    //此时的person指向的是programmer实例化对象
+    //         super.speak();
+    //     }
+    //     speak(){
+    //         super.speak();
+    //         console.log();
+    //     }
+    // }
+    // //2.2在静态方法中的使用
+    // class Person{
+    //     constructor(name){
+    //         this.name=name;
+    //     }
+    //     speak(){}
+    //     static(){}
+    // }
+    // class Programmer extends Person{
+    //     constructor(name,sex){
+    //         super(name,name);   
+    //         super.speak();
+    //     }
+    //     speak(){
+    //         super.speak();
+    //         console.log();
+    //     }
+    //     //指向父类，而不是父类的原型对象
+    //     //通过super调用父类的方法时，方法内部的this指向当前的子类，而不是子类的实例
+    //     static(){
+    //         super.speak();
+    //         //然后添加自己的
+    //     }
+    // }
+    //3.注意事项
+    //使用super的时候，必须显示指定是作为函数还是最为对象的作用，否则会报错
     </script>
 </body>
 </html>
