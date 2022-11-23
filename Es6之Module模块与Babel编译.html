@@ -7,6 +7,72 @@
     <title>Document</title>
 </head>
 <body>
-    
+                                            <!-- //1.Module模块
+
+
+                                   //Module是什么
+    //1.什么是模块
+    //模块：一个一个的局部作用域的代码块
+    //2.什么是模块系统
+    //模块系统需要解决的主要问题
+    //2.1模块话问题
+    //2.2消除全局变量
+    //2.3管理加载顺序
+    //ES Module
+                                //   Module的基本用法
+    //1.使用Module模块化之前的例子（幻灯片那个）
+    //一个文件要引用另一个变量(也能是其他的),需要在引用的文件中导出(export default 变量名)，在另一个文件导入接引(import 变量名 from 正确地文件引用方式)
+    // 就是不使用立即执行函数使js文件中的变量为全局变量，不导入的话无法使用
+    // 2.使用script 标签加载模块
+    // 引用module形式的js形式需要加type不然会报错
+    // <script  scr="./index.js" type="module"></script> -->
+    <!-- //一个文件就是一个模块 -->
+    <!-- 只要你会用到import或者export,在使用script标签加载的时候，就要加上type='module' -->
+    <h1>
+                module的两种导入和导出
+                export default 导出和对应的import导入
+                exprot 导出和对应的import导入
+    </h1>
+    <h1>
+                export default 导出和对应的import导入
+    1.认识导入和导出
+    导出的东西可以被导入(import)并访问到
+    一个模块没有导出,也可以将其导入
+    被导入的代码都会执行一遍,也仅会执行一遍
+    import './module.js';多次导入都执行一边
+    2.基本用法
+    可以随便起名
+    import age from './module.js';
+    这里就能调用文件中的age变量了
+    //一个模块只能有一个export default
+    //export default age;
+    //export default 20;
+    //export default fn(箭头函数);
+    //export default class{};
+    //export default function (){};
+    //export default {};
+    </h1>
+    <h1>
+                export导出和对应的import导入
+    基本用法 多个导出 导出导入时起别名 整体导入 同时导入
+    1.基本用法
+    export 声明或者语句   可以和export default 一起使用
+    例如 export const age=18;
+    export {age}；也可以
+    //不能随意命名
+    import {age} from './module.js';
+    2.多个导出
+    可以写一个导一个
+    import {fn,age,className}  from './module.js';
+    3.导出导入时起别名
+    export {fn as fnc,className,age};
+    import {fnc,age,className as person}  from './module.js';
+    4.整体导入
+    import * as obj from  './module.js';
+    5.同时导入
+    一定是export default的在前,不然会报错
+    加个逗号合并
+    import ages,{fnc,age,className as person}  from './module.js';
+    </h1>
 </body>
 </html>
